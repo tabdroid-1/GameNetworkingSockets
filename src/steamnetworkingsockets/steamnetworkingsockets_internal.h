@@ -8,6 +8,8 @@
 #define STEAMNETWORKINGSOCKETS_INTERNAL_H
 #pragma once
 
+#include <string>
+
 // Public shared stuff
 #include <tier0/basetypes.h>
 #include <tier0/t0constants.h>
@@ -670,7 +672,7 @@ extern bool BSteamNetworkingIdentityToProtobufInternal( const SteamNetworkingIde
 #define SteamNetworkingIdentityToProtobuf( identity, msg, field_identity_string, field_identity_legacy_binary, field_legacy_steam_id ) \
 	{ SteamDatagramErrMsg identityToProtobufErrMsg; \
 		if ( !BSteamNetworkingIdentityToProtobuf( identity, msg, field_identity_string, field_identity_legacy_binary, field_legacy_steam_id, identityToProtobufErrMsg ) ) { \
-			AssertMsg2( false, "Failed to serialize identity to %s message.  %s", msg.GetTypeName().c_str(), identityToProtobufErrMsg ); \
+			AssertMsg2( false, "Failed to serialize identity to %s message.  %s", std::string(msg.GetTypeName()).c_str(), identityToProtobufErrMsg ); \
 		} \
 	}
 
